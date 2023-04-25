@@ -5,10 +5,10 @@ import (
 	"log"
 	"os"
 
-	"github.com/gonum/plot"
-	"github.com/gonum/plot/plotter"
-	"github.com/gonum/plot/vg"
-	"github.com/kniren/gota/dataframe"
+	"github.com/go-gota/gota/dataframe"
+	"gonum.org/v1/plot"
+	"gonum.org/v1/plot/plotter"
+	"gonum.org/v1/plot/vg"
 )
 
 func main() {
@@ -36,10 +36,8 @@ func main() {
 	}
 
 	// Create the plot.
-	p, err := plot.New()
-	if err != nil {
-		log.Fatal(err)
-	}
+	p := plot.New()
+
 	p.X.Label.Text = "Speeding"
 	p.Y.Label.Text = "Distance"
 	p.Add(plotter.NewGrid())

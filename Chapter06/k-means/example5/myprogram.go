@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
+	"github.com/go-gota/gota/dataframe"
 	"github.com/gonum/floats"
-	"github.com/kniren/gota/dataframe"
 )
 
 func main() {

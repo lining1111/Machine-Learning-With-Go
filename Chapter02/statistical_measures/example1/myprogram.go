@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
+	"github.com/go-gota/gota/dataframe"
 	"github.com/gonum/stat"
-	"github.com/kniren/gota/dataframe"
 	"github.com/montanaflynn/stats"
 )
 
