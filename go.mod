@@ -18,7 +18,7 @@ require (
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/sajari/regression v1.0.1
 	github.com/sjwhitworth/golearn v0.0.0-20221228163002-74ae077eafb2
-	github.com/tensorflow/tensorflow v1.15.5
+	github.com/wamuir/graft v0.4.0
 	gonum.org/v1/gonum v0.12.0
 	gonum.org/v1/plot v0.12.0
 )
@@ -44,7 +44,7 @@ require (
 	github.com/go-pdf/fpdf v0.6.0 // indirect
 	github.com/gogo/protobuf v1.3.1 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
-	github.com/golang/protobuf v1.4.2 // indirect
+	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/gonum/diff v0.0.0-20181124234638-500114f11e71 // indirect
 	github.com/gonum/integrate v0.0.0-20181209220457-a422b5c0fdf2 // indirect
 	github.com/gonum/internal v0.0.0-20181124074243-f884aa714029 // indirect
@@ -95,7 +95,7 @@ require (
 	google.golang.org/appengine v1.6.6 // indirect
 	google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013 // indirect
 	google.golang.org/grpc v1.36.1 // indirect
-	google.golang.org/protobuf v1.25.0 // indirect
+	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/src-d/go-billy.v4 v4.3.0 // indirect
 	gopkg.in/src-d/go-git.v4 v4.12.0 // indirect

@@ -5,15 +5,14 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
+	tf "github.com/wamuir/graft/tensorflow"
+	"github.com/wamuir/graft/tensorflow/op"
 	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
-
-	tf "github.com/tensorflow/tensorflow/tensorflow/go"
-	"github.com/tensorflow/tensorflow/tensorflow/go/op"
 )
 
 func main() {
