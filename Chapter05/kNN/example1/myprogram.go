@@ -22,7 +22,7 @@ func main() {
 	// Euclidean distance measure and k=2.
 	knn := knn.NewKnnClassifier("euclidean", "linear", 2)
 
-	// Use cross-fold validation to successively train and evalute the model
+	// Use cross-fold validation to successively train and evaluate the model
 	// on 5 folds of the data set.
 	cv, err := evaluation.GenerateCrossFoldValidationConfusionMatrices(irisData, knn, 5)
 	if err != nil {

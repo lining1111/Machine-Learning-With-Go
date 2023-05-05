@@ -118,6 +118,8 @@ func logisticRegression(features *mat64.Dense, labels []float64, numSteps int, l
 
 			// Calculate the error for this iteration's weights.
 			pred := logistic(featureRow[0]*weights[0] + featureRow[1]*weights[1])
+			fmt.Println("pred:", pred)
+			fmt.Println("label:", label)
 			predError := label - pred
 			sumError += math.Pow(predError, 2)
 
@@ -125,6 +127,7 @@ func logisticRegression(features *mat64.Dense, labels []float64, numSteps int, l
 			for j := 0; j < len(featureRow); j++ {
 				weights[j] += learningRate * predError * pred * (1 - pred) * featureRow[j]
 			}
+			fmt.Println(weights)
 		}
 	}
 

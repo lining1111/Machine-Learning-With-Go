@@ -13,10 +13,8 @@ import (
 func main() {
 
 	// Create a new plot.
-	p, err := plot.New()
-	if err != nil {
-		log.Fatal(err)
-	}
+	p := plot.New()
+
 	p.Title.Text = "Logistic Function"
 	p.X.Label.Text = "x"
 	p.Y.Label.Text = "f(x)"

@@ -31,8 +31,10 @@ func main() {
 	}
 
 	// Make our predictions.
-	predictions := nb.Predict(convertToBinary(testData))
-
+	predictions, err := nb.Predict(convertToBinary(testData))
+	if err != nil {
+		log.Fatal(err)
+	}
 	// Generate a Confusion Matrix.
 	cm, err := evaluation.GetConfusionMatrix(testData, predictions)
 	if err != nil {
@@ -45,7 +47,7 @@ func main() {
 }
 
 // convertToBinary utilizes built in golearn functionality to
-// convert our labels to a binary label format.
+// convert our labels to a binary label format.将数据中的标签转换为机器学习的二元分类器的格式
 func convertToBinary(src base.FixedDataGrid) base.FixedDataGrid {
 	b := filters.NewBinaryConvertFilter()
 	attrs := base.NonClassAttributes(src)
