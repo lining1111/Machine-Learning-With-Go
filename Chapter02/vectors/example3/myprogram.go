@@ -21,7 +21,7 @@ func main() {
 	floats.Scale(1.5, vectorA)
 	fmt.Printf("Scaling A by 1.5 gives: %v\n", vectorA)
 
-	// Compute the norm/length of B.
+	// Compute the norm/length of B. 平方和再开根号
 	normB := floats.Norm(vectorB, 2)
 	fmt.Printf("The norm/length of B is: %0.2f\n", normB)
 }

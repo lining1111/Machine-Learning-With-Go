@@ -43,7 +43,7 @@ func main() {
 			p.Title.Text = fmt.Sprintf("Histogram of a %s", colName)
 
 			// Create a histogram of our values drawn
-			// from the standard normal.
+			// from the standard normal. 将数据分成多少段，做段内计数
 			h, err := plotter.NewHist(v, 16)
 			if err != nil {
 				log.Fatal(err)

@@ -41,10 +41,8 @@ func main() {
 	}
 
 	// Create the plot.
-	p, err := plot.New()
-	if err != nil {
-		log.Fatal(err)
-	}
+	p := plot.New()
+
 	p.X.Label.Text = "TV"
 	p.Y.Label.Text = "Sales"
 	p.Add(plotter.NewGrid())

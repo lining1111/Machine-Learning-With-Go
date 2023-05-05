@@ -26,13 +26,13 @@ func main() {
 	// we will be looking at the measures for this variable.
 	sepalLength := irisDF.Col("petal_length").Float()
 
-	// Calculate the Mean of the variable.
+	// Calculate the Mean of the variable.平均值
 	meanVal := stat.Mean(sepalLength, nil)
 
-	// Calculate the Mode of the variable.
+	// Calculate the Mode of the variable.众数
 	modeVal, modeCount := stat.Mode(sepalLength, nil)
 
-	// Calculate the Median of the variable.
+	// Calculate the Median of the variable.中位数
 	medianVal, err := stats.Median(sepalLength)
 	if err != nil {
 		log.Fatal(err)
