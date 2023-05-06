@@ -17,20 +17,20 @@ import (
 // that defines a trained neural network.
 type neuralNet struct {
 	config  neuralNetConfig
-	wHidden *mat.Dense
-	bHidden *mat.Dense
-	wOut    *mat.Dense
-	bOut    *mat.Dense
+	wHidden *mat.Dense //网络隐藏层的权重
+	bHidden *mat.Dense //网络隐藏层的偏差
+	wOut    *mat.Dense //网络输出层的权重
+	bOut    *mat.Dense //网络输出层的偏差
 }
 
-// neuralNetConfig defines our nueral network
+// neuralNetConfig defines our neural network
 // architecture and learning parameters.
 type neuralNetConfig struct {
-	inputNeurons  int
-	outputNeurons int
-	hiddenNeurons int
-	numEpochs     int
-	learningRate  float64
+	inputNeurons  int     //输入层个数(属性个数)
+	outputNeurons int     //输出层个数(标签或分类个数)
+	hiddenNeurons int     //隐藏层个数
+	numEpochs     int     //反向传播迭代次数
+	learningRate  float64 //参数调整的幅度
 }
 
 func main() {
@@ -83,7 +83,7 @@ func newNetwork(config neuralNetConfig) *neuralNet {
 // Train trains a neural network using backpropagation.
 func (nn *neuralNet) train(x, y *mat.Dense) error {
 
-	// Initialize biases/weights.
+	// Initialize biases/weights. 86-104随机初始化权重和偏差
 	randSource := rand.NewSource(time.Now().UnixNano())
 	randGen := rand.New(randSource)
 
@@ -104,48 +104,58 @@ func (nn *neuralNet) train(x, y *mat.Dense) error {
 	bOut := mat.NewDense(1, nn.config.outputNeurons, bOutRaw)
 
 	// Define the output of the neural network.
-	output := mat.NewDense(0, 0, nil)
+	output := &mat.Dense{}
 
 	// Loop over the number of epochs utilizing
 	// backpropagation to train our model.
 	for i := 0; i < nn.config.numEpochs; i++ {
 
-		// Complete the feed forward process.
-		hiddenLayerInput := mat.NewDense(0, 0, nil)
+		// Complete the feed forward process.前馈阶段，输入通过节点网络向前传播
+		//hiddenLayerInput := mat.NewDense(0, 0, nil)
+		hiddenLayerInput := &mat.Dense{}
 		hiddenLayerInput.Mul(x, wHidden)
 		addBHidden := func(_, col int, v float64) float64 { return v + bHidden.At(0, col) }
 		hiddenLayerInput.Apply(addBHidden, hiddenLayerInput)
 
-		hiddenLayerActivations := mat.NewDense(0, 0, nil)
+		//hiddenLayerActivations := mat.NewDense(0, 0, nil)
+		hiddenLayerActivations := &mat.Dense{}
 		applySigmoid := func(_, _ int, v float64) float64 { return sigmoid(v) }
 		hiddenLayerActivations.Apply(applySigmoid, hiddenLayerInput)
 
-		outputLayerInput := mat.NewDense(0, 0, nil)
+		//outputLayerInput := mat.NewDense(0, 0, nil)
+		outputLayerInput := &mat.Dense{}
 		outputLayerInput.Mul(hiddenLayerActivations, wOut)
 		addBOut := func(_, col int, v float64) float64 { return v + bOut.At(0, col) }
 		outputLayerInput.Apply(addBOut, outputLayerInput)
 		output.Apply(applySigmoid, outputLayerInput)
 
-		// Complete the backpropagation.
-		networkError := mat.NewDense(0, 0, nil)
+		// Complete the backpropagation. 当有前馈过程的输出时，可以通过输出层和隐藏层的增量(或变化)用以反馈。
+		//networkError := mat.NewDense(0, 0, nil)
+		networkError := &mat.Dense{}
 		networkError.Sub(y, output)
 
-		slopeOutputLayer := mat.NewDense(0, 0, nil)
+		//slopeOutputLayer := mat.NewDense(0, 0, nil)
+		slopeOutputLayer := &mat.Dense{}
 		applySigmoidPrime := func(_, _ int, v float64) float64 { return sigmoidPrime(v) }
 		slopeOutputLayer.Apply(applySigmoidPrime, output)
-		slopeHiddenLayer := mat.NewDense(0, 0, nil)
+		//slopeHiddenLayer := mat.NewDense(0, 0, nil)
+		slopeHiddenLayer := &mat.Dense{}
 		slopeHiddenLayer.Apply(applySigmoidPrime, hiddenLayerActivations)
 
-		dOutput := mat.NewDense(0, 0, nil)
+		//dOutput := mat.NewDense(0, 0, nil)
+		dOutput := &mat.Dense{}
 		dOutput.MulElem(networkError, slopeOutputLayer)
-		errorAtHiddenLayer := mat.NewDense(0, 0, nil)
+		//errorAtHiddenLayer := mat.NewDense(0, 0, nil)
+		errorAtHiddenLayer := &mat.Dense{}
 		errorAtHiddenLayer.Mul(dOutput, wOut.T())
 
-		dHiddenLayer := mat.NewDense(0, 0, nil)
+		//dHiddenLayer := mat.NewDense(0, 0, nil)
+		dHiddenLayer := &mat.Dense{}
 		dHiddenLayer.MulElem(errorAtHiddenLayer, slopeHiddenLayer)
 
-		// Adjust the parameters.
-		wOutAdj := mat.NewDense(0, 0, nil)
+		// Adjust the parameters.将增量用作更新网络的权重和偏差，学习率(learning rate)用于衡量这些变化，这样做有助于算法收敛
+		//wOutAdj := mat.NewDense(0, 0, nil)
+		wOutAdj := &mat.Dense{}
 		wOutAdj.Mul(hiddenLayerActivations.T(), dOutput)
 		wOutAdj.Scale(nn.config.learningRate, wOutAdj)
 		wOut.Add(wOut, wOutAdj)
@@ -157,7 +167,8 @@ func (nn *neuralNet) train(x, y *mat.Dense) error {
 		bOutAdj.Scale(nn.config.learningRate, bOutAdj)
 		bOut.Add(bOut, bOutAdj)
 
-		wHiddenAdj := mat.NewDense(0, 0, nil)
+		//wHiddenAdj := mat.NewDense(0, 0, nil)
+		wHiddenAdj := &mat.Dense{}
 		wHiddenAdj.Mul(x.T(), dHiddenLayer)
 		wHiddenAdj.Scale(nn.config.learningRate, wHiddenAdj)
 		wHidden.Add(wHidden, wHiddenAdj)
