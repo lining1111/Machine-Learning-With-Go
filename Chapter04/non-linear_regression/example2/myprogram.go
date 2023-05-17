@@ -3,12 +3,12 @@ package main
 import (
 	"encoding/csv"
 	"fmt"
+	"gonum.org/v1/gonum/mat"
 	"log"
 	"os"
 	"strconv"
 
-	"github.com/berkmancenter/ridge"
-	"github.com/gonum/matrix/mat64"
+	"github.com/ysaito8015/ridge"
 )
 
 func main() {
@@ -80,8 +80,8 @@ func main() {
 	}
 
 	// Form the matrices that will be input to our regression.
-	features := mat64.NewDense(len(rawCSVData), 4, featureData)
-	y := mat64.NewVector(len(rawCSVData), yData)
+	features := mat.NewDense(len(rawCSVData), 4, featureData)
+	y := mat.NewVecDense(len(rawCSVData), yData)
 
 	// Create a new RidgeRegression value, where 1.0 is the
 	// penalty value.

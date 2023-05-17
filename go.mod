@@ -6,10 +6,6 @@ require (
 	github.com/berkmancenter/ridge v0.0.0-20160817211126-84766bc56b56
 	github.com/boltdb/bolt v1.3.1
 	github.com/go-gota/gota v0.12.0
-	github.com/gonum/blas v0.0.0-20181208220705-f22b278b28ac
-	github.com/gonum/floats v0.0.0-20181209220543-c233463c7e82
-	github.com/gonum/matrix v0.0.0-20181209220409-c518dec07be9
-	github.com/gonum/stat v0.0.0-20181125101827-41a0da705a5b
 	github.com/lib/pq v1.10.8
 	github.com/lytics/anomalyzer v0.0.0-20151102000650-13cee1061701
 	github.com/mash/gokmeans v0.0.0-20170215130432-ea22cff45f59
@@ -22,6 +18,8 @@ require (
 	gonum.org/v1/gonum v0.13.0
 	gonum.org/v1/plot v0.12.0
 )
+
+require github.com/ysaito8015/ridge v0.0.2 // indirect
 
 require (
 	cloud.google.com/go v0.57.0 // indirect
@@ -49,11 +47,6 @@ require (
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
-	github.com/gonum/diff v0.0.0-20181124234638-500114f11e71 // indirect
-	github.com/gonum/integrate v0.0.0-20181209220457-a422b5c0fdf2 // indirect
-	github.com/gonum/internal v0.0.0-20181124074243-f884aa714029 // indirect
-	github.com/gonum/lapack v0.0.0-20181123203213-e4cdc5a0bff9 // indirect
-	github.com/gonum/mathext v0.0.0-20181121095525-8a4bf007ea55 // indirect
 	github.com/google/flatbuffers v23.3.3+incompatible // indirect
 	github.com/google/go-cmp v0.5.8 // indirect
 	github.com/google/gofuzz v1.0.0 // indirect
@@ -110,7 +103,7 @@ require (
 	gopkg.in/src-d/go-billy.v4 v4.3.0 // indirect
 	gopkg.in/src-d/go-git.v4 v4.12.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
-	gopkg.in/yaml.v2 v2.2.8 // indirect
+	gopkg.in/yaml.v2 v2.2.8 // indirect,,,,,f
 	gorgonia.org/cu v0.9.4 // indirect
 	gorgonia.org/dawson v1.2.0 // indirect
 	gorgonia.org/gorgonia v0.9.17 // indirect

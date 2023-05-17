@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/go-gota/gota/dataframe"
-	"github.com/gonum/stat"
+	"gonum.org/v1/gonum/stat"
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
 	"gonum.org/v1/plot/plotutil"

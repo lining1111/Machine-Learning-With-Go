@@ -3,11 +3,10 @@ package main
 import (
 	"encoding/csv"
 	"fmt"
+	"gonum.org/v1/gonum/mat"
 	"log"
 	"os"
 	"strconv"
-
-	"github.com/gonum/matrix/mat64"
 )
 
 func main() {
@@ -79,8 +78,8 @@ func main() {
 	}
 
 	// Form the matrices that will be input to our regression.
-	features := mat64.NewDense(len(rawCSVData), 4, featureData)
-	y := mat64.NewVector(len(rawCSVData), yData)
+	features := mat.NewDense(len(rawCSVData), 4, featureData)
+	y := mat.NewVecDense(len(rawCSVData), yData)
 
 	if features != nil && y != nil {
 		fmt.Println("Matrices formed for ridge regression")

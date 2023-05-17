@@ -3,19 +3,20 @@ package main
 import (
 	"fmt"
 
-	"github.com/gonum/stat"
 	"gonum.org/v1/gonum/integrate"
+	"gonum.org/v1/gonum/stat"
 )
 
 func main() {
 
 	// Define our scores and classes.
+	cutoffs := []float64{0, 0, 0, 0}
 	scores := []float64{0.1, 0.35, 0.4, 0.8}
 	classes := []bool{true, false, true, false}
 
 	// Calculate the true positive rates (recalls) and
 	// false positive rates.
-	tpr, fpr := stat.ROC(0, scores, classes, nil)
+	tpr, fpr, _ := stat.ROC(cutoffs, scores, classes, nil)
 
 	// Compute the Area Under Curve.
 	auc := integrate.Trapezoidal(fpr, tpr)
